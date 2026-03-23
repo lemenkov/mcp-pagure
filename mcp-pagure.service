@@ -1,0 +1,31 @@
+[Unit]
+Description=Pagure MCP Server
+After=network.target
+
+[Service]
+Type=simple
+DynamicUser=yes
+StateDirectory=mcp-pagure
+CacheDirectory=mcp-pagure
+LogsDirectory=mcp-pagure
+WorkingDirectory=/opt/mcp-servers/pagure
+Environment="PYTHONUNBUFFERED=1"
+Environment="PAGURE_API_TOKEN=<please, get one>"
+Environment="PAGURE_BASE_URL=https://src.fedoraproject.org"
+ExecStart=/opt/mcp-servers/pagure/venv/bin/pagure --transport http --port 8080
+Restart=on-failure
+RestartSec=10s
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=mcp-pagure
+PrivateTmp=yes
+NoNewPrivileges=yes
+ProtectKernelTunables=yes
+ProtectKernelModules=yes
+ProtectControlGroups=yes
+RestrictRealtime=yes
+RestrictNamespaces=yes
+LockPersonality=yes
+
+[Install]
+WantedBy=multi-user.target
