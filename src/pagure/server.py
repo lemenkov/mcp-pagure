@@ -22,7 +22,7 @@ def get_client() -> PagureClient:
     return pagure_client
 
 
-@mcp.tool()
+@mcp.tool(tags={"read"}, annotations={"readOnlyHint": True, "openWorldHint": True})
 async def list_projects(
     namespace: str = "rpms",
     pattern: Optional[str] = None,
@@ -47,7 +47,7 @@ async def list_projects(
     return json.dumps(result, indent=2)
 
 
-@mcp.tool()
+@mcp.tool(tags={"read"}, annotations={"readOnlyHint": True, "openWorldHint": True})
 async def get_project_info(
     project: str,
     namespace: str = "rpms",
@@ -67,7 +67,7 @@ async def get_project_info(
     return result.model_dump_json(indent=2)
 
 
-@mcp.tool()
+@mcp.tool(tags={"write"}, annotations={"readOnlyHint": False, "openWorldHint": True, "destructiveHint": False})
 async def fork_project(
     project: str,
     namespace: str = "rpms",
@@ -88,7 +88,7 @@ async def fork_project(
     return json.dumps(result, indent=2)
 
 
-@mcp.tool()
+@mcp.tool(tags={"read"}, annotations={"readOnlyHint": True, "openWorldHint": True})
 async def get_file(
     project: str,
     filename: str,
@@ -112,7 +112,7 @@ async def get_file(
     return content
 
 
-@mcp.tool()
+@mcp.tool(tags={"read"}, annotations={"readOnlyHint": True, "openWorldHint": True})
 async def list_branches(
     project: str,
     namespace: str = "rpms",
@@ -133,7 +133,7 @@ async def list_branches(
     return json.dumps({"branches": branches}, indent=2)
 
 
-@mcp.tool()
+@mcp.tool(tags={"read"}, annotations={"readOnlyHint": True, "openWorldHint": True})
 async def list_pull_requests(
     project: str,
     namespace: str = "rpms",
@@ -160,7 +160,7 @@ async def list_pull_requests(
     return json.dumps(result, indent=2)
 
 
-@mcp.tool()
+@mcp.tool(tags={"read"}, annotations={"readOnlyHint": True, "openWorldHint": True})
 async def get_pull_request(
     project: str,
     pr_id: int,
@@ -182,7 +182,7 @@ async def get_pull_request(
     return result.model_dump_json(indent=2)
 
 
-@mcp.tool()
+@mcp.tool(tags={"write"}, annotations={"readOnlyHint": False, "openWorldHint": True, "destructiveHint": False})
 async def comment_on_pr(
     project: str,
     pr_id: int,
@@ -207,7 +207,7 @@ async def comment_on_pr(
     return json.dumps(result, indent=2)
 
 
-@mcp.tool()
+@mcp.tool(tags={"write"}, annotations={"readOnlyHint": False, "openWorldHint": True, "destructiveHint": True})
 async def merge_pull_request(
     project: str,
     pr_id: int,
@@ -230,7 +230,7 @@ async def merge_pull_request(
     return json.dumps(result, indent=2)
 
 
-@mcp.tool()
+@mcp.tool(tags={"write"}, annotations={"readOnlyHint": False, "openWorldHint": True, "destructiveHint": True})
 async def close_pull_request(
     project: str,
     pr_id: int,
@@ -253,7 +253,7 @@ async def close_pull_request(
     return json.dumps(result, indent=2)
 
 
-@mcp.tool()
+@mcp.tool(tags={"read"}, annotations={"readOnlyHint": True, "openWorldHint": True})
 async def get_commit(
     project: str,
     commit_hash: str,
