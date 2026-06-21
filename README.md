@@ -1,3 +1,8 @@
+<!--
+SPDX-FileCopyrightText: 2026 Peter Lemenkov <lemenkov@gmail.com>
+SPDX-License-Identifier: Apache-2.0
+-->
+
 # mcp-pagure
 
 MCP server for Pagure integration (src.fedoraproject.org, pagure.io, and other Pagure instances).

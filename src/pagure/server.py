@@ -1,3 +1,6 @@
+# SPDX-FileCopyrightText: 2026 Peter Lemenkov <lemenkov@gmail.com>
+# SPDX-License-Identifier: Apache-2.0
+
 """Main MCP server for Pagure integration."""
 
 import os
